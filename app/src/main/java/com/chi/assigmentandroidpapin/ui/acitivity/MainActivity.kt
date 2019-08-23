@@ -8,7 +8,6 @@ import com.chi.assigmentandroidpapin.R
 import com.chi.assigmentandroidpapin.base.activ.BaseActivity
 import com.chi.assigmentandroidpapin.net.model.User
 import com.chi.assigmentandroidpapin.ui.adpter.ImageBaseAdapter
-import com.chi.assigmentandroidpapin.utils.HorizontalDividerDecorator
 import com.chi.assigmentandroidpapin.utils.PagingListener
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -42,8 +41,6 @@ class MainActivity : BaseActivity<MainPresenter, MainView>(), MainView {
         linearLayoutManager = LinearLayoutManager(this)
         rvImages.layoutManager = linearLayoutManager
         rvImages.adapter = adapter
-        rvImages.addItemDecoration(HorizontalDividerDecorator(this ,R.drawable.shape_divider, R.dimen.results_decorator_padding,
-            R.dimen.results_decorator_padding))
         pagingListener.attach(rvImages)
     }
 

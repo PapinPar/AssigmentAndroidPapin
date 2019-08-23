@@ -28,7 +28,7 @@ class ImageBaseAdapter(private val context: Context) : RecyclerView.Adapter<Recy
                 com.chi.assigmentandroidpapin.R.layout.image_item_avatar,
                 parent,
                 false
-            )
+            ), items
         )
     }
 
@@ -47,7 +47,7 @@ class ImageBaseAdapter(private val context: Context) : RecyclerView.Adapter<Recy
     }
 }
 
-class ViewHolderAvatar(view: View) : RecyclerView.ViewHolder(view) {
+class ViewHolderAvatar(view: View, var data: ArrayList<User>) : RecyclerView.ViewHolder(view) {
     val avarat = view.ivAvatar
     val name = view.tvUserName
     val innerImage = view.rvInnerImage
@@ -57,6 +57,14 @@ class ViewHolderAvatar(view: View) : RecyclerView.ViewHolder(view) {
     init {
         innerImage.setHasFixedSize(true)
         innerImage.layoutManager = linearLayoutManager
+        val value = object : GridLayoutManager.SpanSizeLookup() {
+            override fun getSpanSize(position: Int): Int {
+                if (position == 0 && data.get(adapterPosition).items!!.size % 2 != 0) return 2
+                return 1
+
+            }
+        }
+        linearLayoutManager.spanSizeLookup = value
         innerImage.adapter = innerAdapter
     }
 }
